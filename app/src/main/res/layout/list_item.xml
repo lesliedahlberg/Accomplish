@@ -7,16 +7,15 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
 
-        <TextView
+        <ImageButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="#"
-            android:id="@+id/numberField"
-            android:padding="24dp"
-            android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:id="@+id/deleteButton"
+            android:src="@drawable/ic_done_black_24dp"
+            android:padding="24dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,5 +24,6 @@
             android:text="..."
             android:id="@+id/accomplishmentField"
             android:padding="24dp" />
+
     </LinearLayout>
 </LinearLayout>
