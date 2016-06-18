@@ -65,6 +65,20 @@ public class ListDbHelper extends SQLiteOpenHelper{
         }
     }
 
+    public void deleteAllListItems() {
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        try {
+            db.delete(TABLE_LIST, null, null);
+            Log.d("TAG", "DELETED successfully");
+            db.setTransactionSuccessful();
+        } catch (Exception e) {
+            Log.d("TAG", "Error while trying to delete list item");
+        } finally {
+            db.endTransaction();
+        }
+    }
+
     public Cursor getCursor(){
         String LIST_SELECT_QUERY = String.format("SELECT * FROM %s", TABLE_LIST);
         SQLiteDatabase db = getReadableDatabase();
@@ -95,4 +109,6 @@ public class ListDbHelper extends SQLiteOpenHelper{
             onCreate(db);
         }
     }
+
+
 }

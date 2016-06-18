@@ -16,7 +16,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText"
         android:layout_gravity="center_horizontal"
-        android:padding="24dp" />
+        android:hint="New Goal"
+        android:padding="24dp">
+        <requestFocus></requestFocus>
+    </EditText>
+
 
     <Button
         android:layout_width="match_parent"

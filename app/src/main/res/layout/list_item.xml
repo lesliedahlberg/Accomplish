@@ -8,14 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="@color/colorPrimaryDark">
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/deleteButton"
-            android:src="@drawable/ic_done_black_24dp"
-            android:padding="24dp" />
+            android:src="@drawable/ic_done_white_24px"
+            android:padding="24dp"
+            android:background="@android:color/transparent" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +25,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="..."
             android:id="@+id/accomplishmentField"
-            android:padding="24dp" />
+            android:padding="24dp"
+            android:textColor="@color/primary_material_light" />
 
     </LinearLayout>
 </LinearLayout>
