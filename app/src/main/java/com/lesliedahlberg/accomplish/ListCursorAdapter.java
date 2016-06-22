@@ -14,6 +14,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by lesliedahlberg on 17/06/16.
  */
@@ -77,9 +84,25 @@ public class ListCursorAdapter extends CursorAdapter {
 
         //TextView idField = (TextView) view.findViewById(R.id.idField);
         TextView accomplishmentField = (TextView) view.findViewById(R.id.accomplishmentField);
+        TextView dateField = (TextView) view.findViewById(R.id.dateField);
 
         //idField.setText(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_ID))));
         accomplishmentField.setText(cursor.getString(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_TITLE)));
+
+        String dateValue = cursor.getString(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_CREATION_DATE));
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = (Date)formatter.parse(dateValue);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+
+        String timeAgo = TimeAgo.DateDifference(date.getTime());
+
+        dateField.setText(timeAgo);
+
 
        animation = AnimationUtils.loadAnimation(context, R.anim.fade_anim);
     }

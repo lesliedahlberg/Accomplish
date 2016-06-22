@@ -22,12 +22,14 @@ public class ListDbHelper extends SQLiteOpenHelper{
 
 
     private static final String DATABASE_NAME = "Database";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 6;
 
     public static final String TABLE_LIST = "list";
 
     public static final String KEY_LIST_ID = "_id";
     public static final String KEY_LIST_TITLE = "title";
+    public static final String KEY_LIST_DESCRIPTION = "description";
+    public static final String KEY_LIST_CREATION_DATE = "creation_date";
 
     private ListDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -97,7 +99,9 @@ public class ListDbHelper extends SQLiteOpenHelper{
         String CREATE_LIST_TABLE = "CREATE TABLE " + TABLE_LIST +
                 "(" +
                 KEY_LIST_ID + " INTEGER PRIMARY KEY," +
-                KEY_LIST_TITLE + " TEXT" +
+                KEY_LIST_TITLE + " TEXT, " +
+                KEY_LIST_DESCRIPTION + " TEXT, " +
+                KEY_LIST_CREATION_DATE + " TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL" +
                 ")";
         db.execSQL(CREATE_LIST_TABLE);
     }

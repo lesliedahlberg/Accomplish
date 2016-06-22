@@ -5,4 +5,5 @@ package com.lesliedahlberg.accomplish;
  */
 public class ListItem {
     public String title;
+    public String description;
 }

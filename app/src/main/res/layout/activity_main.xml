@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.lesliedahlberg.accomplish.MainActivity"
-    android:background="@color/material_grey_900">
+    android:background="@color/background">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -30,6 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_add_white_24dp1" />
+        android:src="@drawable/ic_add_white_24dp1"
+        android:tint="@color/icons"
+        android:background="@color/colorAccent" />
 
 </android.support.design.widget.CoordinatorLayout>
