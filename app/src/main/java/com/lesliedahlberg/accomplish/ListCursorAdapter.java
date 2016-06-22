@@ -7,6 +7,8 @@ import android.util.StringBuilderPrinter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CursorAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -16,6 +18,8 @@ import android.widget.Toast;
  * Created by lesliedahlberg on 17/06/16.
  */
 public class ListCursorAdapter extends CursorAdapter {
+
+    Animation animation;
 
     public ListCursorAdapter(Context context, Cursor cursor, int flags) {
         super(context, cursor, 0);
@@ -27,12 +31,12 @@ public class ListCursorAdapter extends CursorAdapter {
     }
 
     @Override
-    public void bindView(View view, final Context context, Cursor cursor) {
+    public void bindView(final View view, final Context context, Cursor cursor) {
 
         ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);
         deleteButton.setTag(cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_ID)));
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        /*deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int id = (Integer) v.getTag();
@@ -41,6 +45,34 @@ public class ListCursorAdapter extends CursorAdapter {
                 changeCursor(listDbHelper.getCursor());
                 notifyDataSetChanged();
             }
+        });*/
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View v) {
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        Toast.makeText(context, "Task finished!", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        int id = (Integer) v.getTag();
+                        ListDbHelper listDbHelper = ListDbHelper.getInstance(context);
+                        listDbHelper.deleteListItem(id);
+                        changeCursor(listDbHelper.getCursor());
+                        notifyDataSetChanged();
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+
+                    }
+                });
+                view.startAnimation(animation);
+            }
         });
 
         //TextView idField = (TextView) view.findViewById(R.id.idField);
@@ -48,5 +80,7 @@ public class ListCursorAdapter extends CursorAdapter {
 
         //idField.setText(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_ID))));
         accomplishmentField.setText(cursor.getString(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_TITLE)));
+
+       animation = AnimationUtils.loadAnimation(context, R.anim.fade_anim);
     }
 }

@@ -9,8 +9,58 @@
     tools:showIn="@layout/activity_main">
 
 
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/listView" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/emptyListView">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="false"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="false"
+            android:layout_alignWithParentIfMissing="false"
+            android:background="@color/lightPrimaryColor"
+            android:paddingTop="48dp"
+            android:paddingBottom="48dp"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="You have no tasks"
+                android:id="@+id/textView"
+                android:textColor="@color/primaryText"
+                android:textAlignment="center"
+                android:singleLine="true"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Press on the button below to add your first task to accomplish!"
+                android:id="@+id/textView2"
+                android:textColor="@color/primaryText"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </FrameLayout>
+
+
 </RelativeLayout>
