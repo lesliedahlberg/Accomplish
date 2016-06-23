@@ -15,13 +15,17 @@
         android:layout_height="match_parent"
         android:id="@+id/listView"
         android:divider="@color/dividerColor"
-        android:dividerHeight="1px" />
+        android:dividerHeight="1px"
+        android:paddingBottom="100dp"
+        android:clipToPadding="false"
+        />
 
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/emptyListView">
+        android:id="@+id/emptyListView"
+        android:background="@color/colorPrimaryDark">
 
         <LinearLayout
             android:orientation="vertical"
@@ -48,7 +52,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="You have no tasks"
                 android:id="@+id/textView"
-                android:textColor="@color/inverseText"
+                android:textColor="@color/lightPrimaryColor"
                 android:textAlignment="center"
                 android:singleLine="true"
                 android:textStyle="bold" />
@@ -59,7 +63,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Press on the button below to add your first task to accomplish!"
                 android:id="@+id/textView2"
-                android:textColor="@color/inverseText"
+                android:textColor="@color/lightPrimaryColor"
                 android:textAlignment="center" />
         </LinearLayout>
     </FrameLayout>

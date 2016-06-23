@@ -43,7 +43,7 @@ public class ListCursorAdapter extends CursorAdapter {
         ImageButton deleteButton = (ImageButton) view.findViewById(R.id.deleteButton);
         deleteButton.setTag(cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_ID)));
 
-        /*deleteButton.setOnClickListener(new View.OnClickListener() {
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int id = (Integer) v.getTag();
@@ -52,9 +52,9 @@ public class ListCursorAdapter extends CursorAdapter {
                 changeCursor(listDbHelper.getCursor());
                 notifyDataSetChanged();
             }
-        });*/
+        });
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        /*deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 animation.setAnimationListener(new Animation.AnimationListener() {
@@ -80,7 +80,7 @@ public class ListCursorAdapter extends CursorAdapter {
                 });
                 view.startAnimation(animation);
             }
-        });
+        });*/
 
         //TextView idField = (TextView) view.findViewById(R.id.idField);
         TextView accomplishmentField = (TextView) view.findViewById(R.id.accomplishmentField);
@@ -89,18 +89,8 @@ public class ListCursorAdapter extends CursorAdapter {
         //idField.setText(String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_ID))));
         accomplishmentField.setText(cursor.getString(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_TITLE)));
 
-        String dateValue = cursor.getString(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_CREATION_DATE));
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = null;
-        try {
-            date = (Date)formatter.parse(dateValue);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-
-        String timeAgo = TimeAgo.DateDifference(date.getTime());
-
+        long date = cursor.getInt(cursor.getColumnIndexOrThrow(ListDbHelper.KEY_LIST_CREATION_DATE));
+        String timeAgo = TimeAgo.DateDifference(date);
         dateField.setText(timeAgo);
 
 

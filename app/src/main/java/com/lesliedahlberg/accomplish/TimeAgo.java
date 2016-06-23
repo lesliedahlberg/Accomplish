@@ -27,11 +27,11 @@ public class TimeAgo {
     @SuppressLint("SimpleDateFormat")
     public static String DateDifference(long fromDate) {
         long diff = 0;
-        long ms2 = System.currentTimeMillis();
+        long ms2 = System.currentTimeMillis() / (second);
         // get difference in milli seconds
         diff = ms2 - fromDate;
 
-        int diffInSec = Math.abs((int) (diff / (second)));
+        int diffInSec = Math.abs((int) (diff));
         String difference = "";
         if(diffInSec < minute)
         {

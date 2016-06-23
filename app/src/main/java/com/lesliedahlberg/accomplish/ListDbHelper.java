@@ -22,7 +22,7 @@ public class ListDbHelper extends SQLiteOpenHelper{
 
 
     private static final String DATABASE_NAME = "Database";
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 8;
 
     public static final String TABLE_LIST = "list";
 
@@ -42,6 +42,8 @@ public class ListDbHelper extends SQLiteOpenHelper{
         try {
             ContentValues values = new ContentValues();
             values.put(KEY_LIST_TITLE, listItem.title);
+            long date = System.currentTimeMillis() / 1000;
+            values.put(KEY_LIST_CREATION_DATE, date);
 
             // Notice how we haven't specified the primary key. SQLite auto increments the primary key column.
             db.insertOrThrow(TABLE_LIST, null, values);
@@ -101,7 +103,7 @@ public class ListDbHelper extends SQLiteOpenHelper{
                 KEY_LIST_ID + " INTEGER PRIMARY KEY," +
                 KEY_LIST_TITLE + " TEXT, " +
                 KEY_LIST_DESCRIPTION + " TEXT, " +
-                KEY_LIST_CREATION_DATE + " TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL" +
+                KEY_LIST_CREATION_DATE + " INTEGER" +
                 ")";
         db.execSQL(CREATE_LIST_TABLE);
     }
